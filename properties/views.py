@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 from django.views.decorators.cache import cache_page
-
 from properties.utils import get_all_properties
 from .models import Property
 
