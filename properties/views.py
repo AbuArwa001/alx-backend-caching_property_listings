@@ -12,5 +12,5 @@ def property_list(request):
     if not properties:
         return JsonResponse({'error': 'No properties found'}, status=404)
     return JsonResponse({
-        'properties': list(properties)
+        'data': list(properties)
     })
