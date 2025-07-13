@@ -9,12 +9,8 @@ def property_list(request):
     """Fetches a list of properties and returns them as JSON.
     Caches the result for 15 minutes."""
     properties = get_all_properties()
-
-    if properties:
-        return JsonResponse(properties, safe=False)
-    # Fetch all properties from the database
-
-    properties = Property.objects.all().values(
-        'id', 'title', 'description', 'price', 'location', 'created_at'
-    )
-    return JsonResponse(list(properties), safe=False)
+    if not properties:
+        return JsonResponse({'error': 'No properties found'}, status=404)
+    return JsonResponse({
+        'properties': list(properties)
+    })
